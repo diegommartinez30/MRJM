@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nível III</title>
+  <style>
+    body {
+      background-color: #0d0d0d;
+      color: #e0e0e0;
+      font-family: 'Courier New', Courier, monospace;
+      padding: 2rem;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    h1 {
+      color: #800080;
+      font-size: 3rem;
+      text-shadow: 0 0 15px #800080, 0 0 30px #800080, 0 0 60px #800080;
+      animation: pulse 2s infinite;
+    }
+
+    .enigma {
+      margin-top: 3rem;
+      padding: 2rem;
+      border-radius: 10px;
+      animation: shake 2s infinite alternate;
+    }
+
+    .botao-libertar {
+      margin-top: 2rem;
+      padding: 1rem 2rem;
+      font-size: 1.5rem;
+      background-color: transparent;
+      border: 3px solid #800080;
+      color: #800080;
+      text-shadow: 0 0 10px #800080;
+      border-radius: 10px;
+      cursor: pointer;
+      animation: pulse 1.5s infinite, glow-border 2s infinite alternate;
+      box-shadow: 0 0 15px #800080, 0 0 30px #800080;
+    }
+
+    .botao-libertar:hover {
+      background-color: #800080;
+      color: #0d0d0d;
+    }
+
+    .mensagem-final {
+      font-size: 2rem;
+      color: #800080;
+      text-shadow: 0 0 20px #800080, 0 0 40px #800080, 0 0 60px #800080;
+      animation: shake 0.1s infinite alternate, pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+      0% { text-shadow: 0 0 10px #800080; }
+      50% { text-shadow: 0 0 30px #800080; }
+      100% { text-shadow: 0 0 10px #800080; }
+    }
+
+    @keyframes glow-border {
+      0% { box-shadow: 0 0 5px #800080, 0 0 10px #800080; }
+      100% { box-shadow: 0 0 25px #800080, 0 0 50px #800080; }
+    }
+
+    @keyframes shake {
+      0% { transform: translate(0px, 0px); }
+      25% { transform: translate(2px, -2px); }
+      50% { transform: translate(-2px, 2px); }
+      75% { transform: translate(2px, 2px); }
+      100% { transform: translate(-2px, -2px); }
+    }
+
+    @keyframes glitch {
+      0% { transform: translate(0px, 0px); }
+      10% { transform: translate(10px, 5px); }
+      20% { transform: translate(-10px, -5px); }
+      30% { transform: translate(5px, 0px); }
+      40% { transform: translate(-5px, 5px); }
+      50% { transform: translate(0px, -10px); }
+      60% { transform: translate(10px, 10px); }
+      70% { transform: translate(-10px, -10px); }
+      80% { transform: translate(5px, 5px); }
+      90% { transform: translate(-5px, -5px); }
+      100% { transform: translate(0px, 0px); }
+    }
+
+    .glitch {
+      position: relative;
+      color: #800080;
+      animation: glitch 0.1s infinite linear;
+    }
+
+    .imagem {
+      margin-top: 3rem;
+      cursor: pointer;
+      animation: pulse 2s infinite, glow-border 2s infinite alternate;
+      box-shadow: 0 0 15px #800080, 0 0 30px #800080;
+      transition: transform 0.3s ease;
+    }
+
+    .imagem:hover {
+      transform: scale(1.1);
+    }
+  </style>
+</head>
+<body>
+  <div id="conteudo">
+    <h1>NÍVEL III</h1>
+    <div class="enigma">
+      <p>NÃO É NOSSO FIM!</p>
+      <p>Não há outras escolhas.</p>
+      <button class="botao-libertar" onclick="libertar()">LIBERTAR</button>
+    </div>
+  </div>
+
+  <script>
+    function libertar() {
+      const body = document.body;
+      const conteudo = document.getElementById("conteudo");
+
+      conteudo.remove(); // Remove tudo da tela
+
+      setTimeout(() => {
+        // Adiciona a mensagem final com efeito de glitch
+        const mensagem = document.createElement("div");
+        mensagem.className = "mensagem-final glitch";
+        mensagem.textContent = "Eu te verei em breve hahahahaha.";
+        body.appendChild(mensagem);
+      }, 3000); // Espera 3 segundos para aparecer a mensagem
+
+      setTimeout(() => {
+        // Remove a mensagem final após 5 segundos
+        const mensagem = document.querySelector(".mensagem-final");
+        if (mensagem) mensagem.remove();
+
+        // Adiciona a imagem clicável com efeito de brilho
+        const imagem = document.createElement("img");
+        imagem.src = "imagem/imagem.jpg"; // Substitua pelo caminho da sua imagem
+        imagem.alt = "Clique para continuar";
+        imagem.className = "imagem";
+        imagem.onclick = () => {
+          window.location.href = "https://www.youtube.com/watch?v=OYB1rbL8EHo"; // Substitua pelo link desejado
+        };
+        body.appendChild(imagem);
+      }, 8000); // 5 segundos após a mensagem final aparecer
+    }
+
+document.addEventListener('contextmenu', function (e) {
+  e.preventDefault();
+});
+
+document.addEventListener('keydown', function (e) {
+
+  if (e.key === "F12") {
+    e.preventDefault();
+    return false;
+  }
+  if (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J')) {
+    e.preventDefault();
+    return false;
+  }
+
+  if (e.ctrlKey && e.key === 'u') {
+    e.preventDefault();
+    return false;
+  }
+
+  if (e.ctrlKey && e.shiftKey && e.key === 'C') {
+    e.preventDefault();
+    return false;
+  }
+});
+  </script>
+</body>
+</html>

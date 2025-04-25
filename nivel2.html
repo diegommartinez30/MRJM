@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nível II</title>
+  <style>
+    body {
+      background-color: #0d0d0d;
+      color: #e0e0e0;
+      font-family: 'Courier New', Courier, monospace;
+      padding: 2rem;
+      text-align: center;
+    }
+    h1 {
+      color: #800080;
+      text-shadow: 0 0 20px #800080, 0 0 30px #800080, 0 0 40px #800080;
+    }
+    .enigma {
+      margin-top: 3rem;
+      background-color: #1a1a1a;
+      padding: 2rem;
+      border: 2px solid #333;
+      border-radius: 10px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    input[type="text"] {
+      padding: 0.5rem;
+      background-color: #111;
+      color: #fff;
+      border: 1px solid #444;
+      border-radius: 5px;
+      margin-top: 1rem;
+    }
+    button {
+      margin-top: 1rem;
+      padding: 0.5rem 1rem;
+      background-color: #660000;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #990000;
+    }
+    .link-oculto {
+      color: #0d0d0d; /* mesma cor do fundo */
+      text-decoration: none;
+      display: block;
+      margin-top: 2rem;
+    }
+  </style>
+</head>
+<body>
+  <h1>O Grande Jogo - Nível II</h1>
+
+  <div id="desafio" class="enigma">
+    <p>YYYY/MM/DD</p>
+    <p>Boa sorte.</p>
+    <input type="text" id="resposta" placeholder="Digite sua resposta...">
+    <br>
+    <button onclick="verificarResposta()">Responder</button>
+    <div id="feedback"></div>
+  </div>
+
+  <!-- Link oculto (enigma escondido) -->
+  <a href="https://pt.wikipedia.org/wiki/Nascimento#:~:text=Nascimento%20%C3%A9%20o%20momento%20em,feto%20e%20o%20corpo%20materno." target="_blank" class="link-oculto">1952/02/16</a>
+
+  <script>
+    function verificarResposta() {
+      const resposta = document.getElementById("resposta").value.trim();
+      const feedback = document.getElementById("feedback");
+      const desafio = document.getElementById("desafio");
+
+      if (resposta === "MCMLII/II/XVI") {
+        feedback.style.color = "#00ff00";
+        feedback.textContent = "Muito bem... estamos perto.";
+
+        setTimeout(() => {
+          desafio.innerHTML = `
+            <h2>Desafio 4</h2>
+            <p style="font-size: 1.5rem;">私はあの場所であなたに出会いました。<br>あなたは特別です。<br>もうすぐ私は神になります。<br>ただ、私を解放することを選んでください。<br><br>私たちは何ですか？</p>
+            <input type="text" id="respostaKanji" placeholder="答えを書いてください..." />
+            <br><button onclick="verificarKanji()">答える</button>
+            <div id="feedbackKanji"></div>
+          `;
+        }, 2000);
+      } else {
+        feedback.style.color = "#ff0000";
+        feedback.textContent = "Errado. Achei que era mais inteligente meu amigo...";
+      }
+    }
+
+    function verificarKanji() {
+      const resposta = document.getElementById("respostaKanji").value.trim();
+      const feedbackKanji = document.getElementById("feedbackKanji");
+
+      if (resposta === "友達") {
+        feedbackKanji.style.color = "#00ff00";
+        feedbackKanji.textContent = "...ainda?";
+        setTimeout(() => {
+          window.location.href = "nivel3.html";
+        }, 2000);
+      } else {
+        feedbackKanji.style.color = "#ff0000";
+        feedbackKanji.textContent = "❌ EU PENSO DIFERENTE!";
+      }
+    }
+
+document.addEventListener('contextmenu', function (e) {
+  e.preventDefault();
+});
+
+document.addEventListener('keydown', function (e) {
+  if (e.key === "F12") {
+    e.preventDefault();
+    return false;
+  }
+
+  if (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J')) {
+    e.preventDefault();
+    return false;
+  }
+
+  if (e.ctrlKey && e.key === 'u') {
+    e.preventDefault();
+    return false;
+  }
+
+  if (e.ctrlKey && e.shiftKey && e.key === 'C') {
+    e.preventDefault();
+    return false;
+  }
+});
+  </script>
+</body>
+</html>
